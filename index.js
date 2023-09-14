@@ -41,43 +41,6 @@ async function run(){
             res.send(result);
         });
 
-        app.get('/users',async (req, res) => {
-            let query = {};
-            const cursor = user.find(query);
-            const a = await cursor.toArray();
-            res.send(a);
-        });
-
-        app.get('/userEmail', async (req, res) => {
-            let query = {};
-    
-            if (req.query.email) {
-                query = {
-                    email: req.query.email
-                }
-            }
-            const cursor = user.find(query);
-            const review = await cursor.toArray();
-            res.send(review);
-        });
-
-
-        app.get('/jobs', async (req, res) => {
-            let query = {};
-            const cursor = jobOn.find(query).limit(0).sort({$natural:-1});
-            const a = await cursor.toArray();
-            res.send(a); 
-        });
-        //new
-        app.get('/jobs/:id', async (req, res) => {
-            const id = req.params.id;
-            const query = { _id: ObjectId(id) };
-            const b = await jobOn.findOne(query);
-            res.send(b);
-        });
-
-    
-
         
 
     }
